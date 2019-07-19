@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 17:27:20 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/18 17:27:40 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/18 17:57:55 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ unsigned	fun_f(unsigned x, unsigned y, unsigned z)
 	return ((x & y) | (~x & z));
 }
 
-unsigned	fun_g(unsigned abcd[])
+unsigned	fun_g(unsigned x, unsigned y, unsigned z)
 {
-	return ((abcd[1] & abcd[2]) | (~abcd[3] & abcd[2]));
+	return ((x & z) | (~z & y));
 }
 
-unsigned	fun_h(unsigned abcd[])
+unsigned	fun_h(unsigned x, unsigned y, unsigned z)
 {
-	return (abcd[1] ^ abcd[2] ^ abcd[3]);
+	return (x ^ y ^ z);
 }
 
-unsigned	fun_i(unsigned abcd[])
+unsigned	fun_i(unsigned x, unsigned y, unsigned z)
 {
-	return (abcd[2] ^ (~abcd[3] | abcd[1]));
+	return (y ^ (~z | x));
 }
