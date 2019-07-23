@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:31:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/22 19:25:28 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/22 19:40:58 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,29 @@ int			print_md5(unsigned hash[])
 		i++;
 	}
 	return (1);
+}
+
+void	ft_md5(t_fmd5 *fmd, t_flg *flg, t_alp *al, char *arg)
+{
+	unsigned *x;
+
+	md5_init(fmd, arg);
+	x = (unsigned *)ft_strnew(16);
+	x = (unsigned *)md5_update(fmd, arg);
+	x[15] = 0;
+	stage_one(fmd, al, x);
+	if (flg->q == 0 && flg->r == 0)
+	{
+		ft_printf("MD5 (\"%s\") = ", arg);
+		print_md5(md5_final(fmd));
+	}
+	else if (flg->r)
+	{
+		print_md5(md5_final(fmd));
+		//printf(" \"%s\"", argv[flg.i]);
+		ft_printf(" \"%s\" ", arg);
+	}
+	else if(flg->q)
+		print_md5(md5_final(fmd));
+	printf("\n");
 }
