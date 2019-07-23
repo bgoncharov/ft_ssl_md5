@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:31:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/22 18:31:23 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/22 19:25:28 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ unsigned		*md5_final(t_fmd5 *fmd)
 	return (hash);
 }
 
-void			print_md5(unsigned hash[])
+int			print_md5(unsigned hash[])
 {
 	int i;
 
@@ -84,4 +84,5 @@ void			print_md5(unsigned hash[])
 		printf("%02x", hash[i]);
 		i++;
 	}
+	return (1);
 }
