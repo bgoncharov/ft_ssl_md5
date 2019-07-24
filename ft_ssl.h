@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:54:46 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/23 17:47:25 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/24 14:51:50 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ unsigned		fun_g(unsigned x, unsigned y, unsigned z);
 unsigned		fun_h(unsigned x, unsigned y, unsigned z);
 unsigned		fun_i(unsigned x, unsigned y, unsigned z);
 void			md5_init(t_fmd5 *fmd, char *str);
-unsigned char 	*md5_update(t_fmd5 *fmd, char *str);
+unsigned	 	*md5_update(t_fmd5 *fmd, char *str, unsigned *x);
 unsigned		rl(unsigned a, unsigned b);
 unsigned		rotr(unsigned a, unsigned b);
 unsigned		revers_data(unsigned b);
