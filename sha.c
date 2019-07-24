@@ -6,13 +6,13 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 19:39:32 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/24 14:58:26 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/24 15:02:07 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-void			sha_init(t_fsha *fsh, t_flg *flg)
+void		sha_init(t_fsha *fsh, t_flg *flg)
 {
 	if (!ft_strcmp(flg->alg, "sha256"))
 	{
@@ -26,18 +26,18 @@ void			sha_init(t_fsha *fsh, t_flg *flg)
 		fsh->hash[7] = 0x5BE0CD19;
 		fsh->r = 64;
 	}
-	// else //for SHA512
-	// {
-	//     fsh->h[0] = 0x6a09e667f3bcc908;
-	//     fsh->h[1] = 0xbb67ae8584caa73b;
-	//     fsh->h[2] = 0x3c6ef372fe94f82b;
-	//     fsh->h[3] = 0xa54ff53a5f1d36f1;
-	//     fsh->h[4] = 0x510e527fade682d1;
-	//     fsh->h[5] = 0x9b05688c2b3e6c1f;
-	//     fsh->h[6] = 0x1f83d9abfb41bd6b;
-	//     fsh->h[7] = 0x5be0cd19137e2179;
-	//     fsh->r = 80;
-	// }
+	else
+	{
+	    fsh->hash[0] = 0x6a09e667f3bcc908;
+	    fsh->hash[1] = 0xbb67ae8584caa73b;
+	    fsh->hash[2] = 0x3c6ef372fe94f82b;
+	    fsh->hash[3] = 0xa54ff53a5f1d36f1;
+	    fsh->hash[4] = 0x510e527fade682d1;
+	    fsh->hash[5] = 0x9b05688c2b3e6c1f;
+	    fsh->hash[6] = 0x1f83d9abfb41bd6b;
+	    fsh->hash[7] = 0x5be0cd19137e2179;
+	    fsh->r = 80;
+	}
 }
 
 unsigned	*sha_update(t_fsha *fsh, char *str, unsigned int *w)
@@ -50,6 +50,14 @@ unsigned	*sha_update(t_fsha *fsh, char *str, unsigned int *w)
 	size = 1 + ((fsh->bitlen + 16 + 64) / 512);
 	ft_memcpy((char *)w, str, fsh->len);
 	((char *)w)[fsh->len] = 0x80;
+	// size = 448 - (fsh->len + 1);
+	// i = fsh->len + 1;
+	// while (i < size)
+	// {
+	// 	w[i] = 0;
+	// 	i++;
+	// }
+	// w[size] = fsh->bitlen;
 	i = 0;
 	while (i < (size * 16) - 1)
 	{
@@ -60,55 +68,68 @@ unsigned	*sha_update(t_fsha *fsh, char *str, unsigned int *w)
 	return (w);
 }
 
-unsigned		*sha_final(t_fsha *fsh, unsigned hash[])
+void		put_sha(t_flg *flg, t_fsha *fsh)
 {
-	int			i;
-	int			j;
-	
+	int i;
+
 	i = 0;
-	j = 0;
-	while (i < 8)
+	if (!ft_strcmp(flg->alg, "sha256"))
 	{
-		hash[j++] = (unsigned char) (fsh->hash[i] >> 24);
-		hash[j++] = (unsigned char) (fsh->hash[i] >> 16);
-		hash[j++] = (unsigned char) (fsh->hash[i] >> 8);
-		hash[j++] = (unsigned char) fsh->hash[i];
-		i++;
+		while (i < 8)
+		{
+			ft_printf("%02x", fsh->hash[i]);
+			i++;
+		}
 	}
-	return (hash);
-}
-
-void    print_sha(t_fsha *fsh)
-{
-	int         i;
-
-	i = 0;
-	while (i < 8)
+	else
 	{
-		ft_printf("%x", fsh->hash[i]);
-		i++;
+		while (i < 8)
+		{
+			ft_printf("%lx", fsh->hash[i]);
+			i++;
+		}
 	}
 }
 
-void	ft_sha(t_flg *flg, t_alp *al, char *arg)
+void		ft_sha256(t_fsha *fsh, t_alp *al, char *arg)
 {
-	t_fsha          fsh;
 	unsigned int	*w;
 	int				i;
 
-	sha_init(&fsh, flg);
 	w = ft_memalloc(sizeof(unsigned int) * 64);
-	sha_update(&fsh, arg, w);
+	sha_update(fsh, arg, w);
 	i = 16;
-	while (i < fsh.r)
+	while (i < fsh->r)
 	{
-		fsh.s[0] = rotr(w[i - 15], 7) ^ rotr(w[i - 15], 18) ^ (w[i - 15] >> 3);
-		fsh.s[1] = rotr(w[i - 2], 17) ^ rotr(w[i - 2], 19) ^ (w[i - 2] >> 10);
-		w[i] = w[i - 16] + fsh.s[0] + w[i - 7] + fsh.s[1];
+		fsh->s[0] = rotr(w[i - 15], 7) ^ rotr(w[i - 15], 18) ^ (w[i - 15] >> 3);
+		fsh->s[1] = rotr(w[i - 2], 17) ^ rotr(w[i - 2], 19) ^ (w[i - 2] >> 10);
+		w[i] = w[i - 16] + fsh->s[0] + w[i - 7] + fsh->s[1];
 		i++;
 	}
-	sha_stages(&fsh, al, w);
+	sha_stages(fsh, al, w);
 	free(w);
-	print_sha(&fsh);
-	printf("\n");
+}
+
+void		ft_sha(t_flg *flg, t_alp *al, char *arg)
+{
+	t_fsha			fsh;
+
+	sha_init(&fsh, flg);
+	if (!ft_strcmp(flg->alg, "sha256"))
+		ft_sha256(&fsh, al, arg);
+	else
+		ft_sha512(&fsh, al, arg);
+	if (flg->q == 0 && flg->r == 0)
+	{
+		ft_printf("SHA256 (\"%s\") = ", arg);
+		put_sha(flg, &fsh);
+	}
+	else if (flg->r)
+	{
+		put_sha(flg, &fsh);
+		ft_printf(" \"%s\"", arg);
+	}
+	else if (flg->q)
+		put_sha(flg, &fsh);
+	ft_printf("\n");
 }
