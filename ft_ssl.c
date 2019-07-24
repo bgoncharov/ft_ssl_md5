@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:50:59 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/23 15:46:49 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/23 16:18:08 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int				main(int argc, char **argv)
 
 	if (argc < 4)
 	{
-		ft_putstr("usage: ./ft_ssl [hash_function] usage: [-pqr] [-s string] [files ...]\n");
+		ft_putstr("usage: ./ft_ssl [hash_function] [-pqr] [-s string] [files ...]\n");
 		exit(1);
 	}
 	else
@@ -34,7 +34,7 @@ int				main(int argc, char **argv)
 			if (!ft_strcmp(flg.alg, "md5"))
 				ft_md5(&fmd, &flg, &al, argv[flg.i]);
 			else
-				ft_sha(&fmd, &flg, &al, argv[flg.i]);
+				ft_sha(&flg, &al, argv[flg.i]);
 		}
 		else
 		{

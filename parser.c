@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:30:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/23 15:47:13 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/23 16:16:44 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	parse_alg(t_flg *flg, char *arg)
 	if (!ft_strcmp(arg, "md5") || !ft_strcmp(arg, "MD5"))
 		flg->alg = "md5";
 	else if (!ft_strcmp(arg, "sha256") || !ft_strcmp(arg, "SHA256"))
-		flg->alg = "SHA256";
+		flg->alg = "sha256";
 	else if (!ft_strcmp(arg, "sha512") || !ft_strcmp(arg, "SHA512"))
-		flg->alg = "SHA512";
+		flg->alg = "sha512";
 	else
 	{
 		ft_putstr("Error. Invalid hash function. Use md5, sha256 or sha512\n");
