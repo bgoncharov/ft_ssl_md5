@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:50:59 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/23 16:18:08 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/23 17:47:50 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int				main(int argc, char **argv)
 			exit(1);
 		}
 	}
+	//while (1);
 	return (0);
 }
