@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:50:59 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/23 17:47:50 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/24 15:00:03 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				main(int argc, char **argv)
 		flag_init(&flg, argv[2]);
 		parse_flag(&flg, argv[3]);
 		alphabet_init(&al);
-		if(flg.s && argv[flg.i])
+		if (flg.s && argv[flg.i])
 		{
 			if (!ft_strcmp(flg.alg, "md5"))
 				ft_md5(&fmd, &flg, &al, argv[flg.i]);

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 17:57:07 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/24 14:51:03 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/24 14:58:45 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,4 @@ void		stage_four(t_fmd5 *fmd, t_alp *a, unsigned *x)
 	fmd->hash[1] += a->b;
 	fmd->hash[2] += a->c;
 	fmd->hash[3] += a->d;
-	printf("\n%u%u%u%u\n", fmd->hash[0], fmd->hash[1], fmd->hash[2], fmd->hash[3]);
 }
