@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:30:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/23 16:16:44 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:37:57 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ void	flag_init(t_flg *flg, char *arg)
 		flg->r = 1;
 	else if (!ft_strcmp(arg, "-s"))
 		flg->s = 1;
-	else
-	{
-		ft_putstr("usage: md5 [-pqr] [-s string] [files ...]\n");
-		// ft_putstr("\t-p: echo STDIN to STDOUT and append the checksum ");
-		// ft_putstr("to STDOUT\n");
-		// ft_putstr("\t-q: quiet mode\n");
-		// ft_putstr("\t-r: reverse the format of the output\n");
-		// ft_putstr("\t-s: print the sum of the given string\n");
-		exit(1);
-	}
+	// else
+	// {
+	// 	ft_putstr("usage: md5 [-pqr] [-s string] [files ...]\n");
+	// 	// ft_putstr("\t-p: echo STDIN to STDOUT and append the checksum ");
+	// 	// ft_putstr("to STDOUT\n");
+	// 	// ft_putstr("\t-q: quiet mode\n");
+	// 	// ft_putstr("\t-r: reverse the format of the output\n");
+	// 	// ft_putstr("\t-s: print the sum of the given string\n");
+	// 	exit(1);
+	// }
 }
 
 void	alphabet_init(t_alp *al)
@@ -68,18 +68,12 @@ void	parse_alg(t_flg *flg, char *arg)
 
 void	parse_flag(t_flg *flg, char *arg)
 {
-	if (flg->q || flg->r)
+	if (!flg->q && !flg->r && !flg->p)
+		flg->i = 2;
+	else if ((flg->q || flg->r) && !ft_strcmp(arg, "-s"))
 	{
-		if (!ft_strcmp(arg, "-s"))
-		{
-			flg->s = 1;
-			flg->i = 4;
-		}
-		else
-		{
-			ft_printf("%s: %s: No such file or directory\n", flg->alg, arg);
-			exit(1);
-		}
+		flg->s = 1;
+		flg->i = 4;
 	}
 	else
 		flg->i = 3;
