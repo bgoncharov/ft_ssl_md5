@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:54:46 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/25 16:20:26 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/25 16:25:49 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ unsigned		*md5_update(t_fmd5 *fmd, unsigned *x);
 char			*get_block_md5(t_fmd5 *fmd, t_alp *al, char *arg);
 unsigned		rl(unsigned x, unsigned n);
 unsigned		rotr(unsigned x, unsigned n);
-unsigned		revers_data(unsigned b);
+unsigned long	rotr_64(unsigned long x, unsigned long n);
+unsigned		revers_bits(unsigned b);
+unsigned long long	revers_bits_64(unsigned long long i);
 void			stage_one(t_fmd5 *fmd, t_alp *a, unsigned *x);
 void			stage_two(t_fmd5 *fmd, t_alp *a, unsigned *x);
 void			stage_three(t_fmd5 *fmd, t_alp *a, unsigned *x);

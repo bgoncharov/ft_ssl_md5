@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:31:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/25 15:56:58 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/25 16:26:49 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void			md5_init(t_fmd5 *fmd, char *str, int len)
 {
 	fmd->hash[0] = 0x67452301;
-	fmd->hash[1] = 0xEFCDAB89;
-	fmd->hash[2] = 0x98BADCFE;
+	fmd->hash[1] = 0xefcdab89;
+	fmd->hash[2] = 0x98badcfe;
 	fmd->hash[3] = 0x10325476;
 	fmd->hash[4] = 0;
 	fmd->hash[5] = 0;
