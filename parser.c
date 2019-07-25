@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:30:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/25 14:37:57 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/25 15:41:15 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	flag_init(t_flg *flg, char *arg)
 	flg->q = 0;
 	flg->r = 0;
 	flg->s = 0;
+	flg->fd = 0;
 	flg->i = 0;
 	if (!ft_strcmp(arg, "-p"))
 		flg->p = 1;
@@ -27,6 +28,9 @@ void	flag_init(t_flg *flg, char *arg)
 		flg->r = 1;
 	else if (!ft_strcmp(arg, "-s"))
 		flg->s = 1;
+	else
+		flg->fd = 1;
+	
 	// else
 	// {
 	// 	ft_putstr("usage: md5 [-pqr] [-s string] [files ...]\n");

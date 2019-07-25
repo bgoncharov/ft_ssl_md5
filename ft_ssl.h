@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:54:46 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/25 14:48:55 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/25 15:42:27 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct	s_flg
 	int			r;
 	int			s;
 	int			i;
+	int			fd;
+	char		*fdname;
 	char		*alg;
 }				t_flg;
 
@@ -72,7 +74,7 @@ unsigned		fun_g(unsigned x, unsigned y, unsigned z);
 unsigned		fun_h(unsigned x, unsigned y, unsigned z);
 unsigned		fun_i(unsigned x, unsigned y, unsigned z);
 void			md5_init(t_fmd5 *fmd, char *str);
-unsigned		*md5_update(t_fmd5 *fmd, char *str, unsigned *x);
+unsigned		*md5_update(t_fmd5 *fmd, unsigned *x);
 unsigned		rl(unsigned x, unsigned n);
 unsigned		rotr(unsigned x, unsigned n);
 unsigned		revers_data(unsigned b);
