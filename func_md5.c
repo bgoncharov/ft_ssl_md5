@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 17:27:20 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/22 18:25:41 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/25 15:50:54 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ unsigned	fun_h(unsigned x, unsigned y, unsigned z)
 unsigned	fun_i(unsigned x, unsigned y, unsigned z)
 {
 	return (y ^ (~z | x));
+}
+
+unsigned	rl(unsigned x, unsigned n)
+{
+	return ((x << n) | (x >> (32 - n)));
 }

@@ -6,16 +6,11 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 17:57:07 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/24 15:22:41 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/25 15:50:07 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
-
-unsigned	rl(unsigned x, unsigned n)
-{
-	return ((x << n) | (x >> (32 - n)));
-}
 
 void		stage_one(t_fmd5 *fmd, t_alp *a, unsigned *x)
 {
