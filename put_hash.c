@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:49:09 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/25 15:56:52 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/25 16:12:51 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		put_hash_sha(t_flg *flg, t_fsha *fsh)
 	{
 		while (i < 8)
 		{
-			ft_printf("%02x", fsh->hash[i]);
+			ft_printf("%08x", fsh->hash[i]);
 			i++;
 		}
 	}
@@ -81,7 +81,7 @@ void		put_hash_sha(t_flg *flg, t_fsha *fsh)
 	{
 		while (i < 8)
 		{
-			ft_printf("%02lx", fsh->hash[i]);
+			ft_printf("%016lx", fsh->hash[i]);
 			i++;
 		}
 	}

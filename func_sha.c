@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 17:46:47 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/25 15:57:23 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/25 16:13:40 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ unsigned	rotr(unsigned x, unsigned n)
 
 unsigned	revers_data(unsigned b)
 {
-	//return ((b << 24) | (b << 16) | (b << 8) | b);
 	return ((b >> 24) | ((b & 0xff0000) >> 8) |
 		((b & 0xff00) << 8) | (b << 24));
 }
