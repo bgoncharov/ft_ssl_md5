@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:54:46 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/27 20:06:08 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/27 20:35:48 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct		s_fsha
 }					t_fsha;
 
 int				parse_file(t_flg *flg, t_alp *al, char *arg);
-void			flag_init(t_flg *flg, char *arg);
+void			flag_init(t_flg *flg, char **arg, int argv);
 void			parse_flag(t_flg *flg, char *arg);
 void			parse_alg(t_flg *flg, char *arg);
 void			alphabet_init(t_alp *al);

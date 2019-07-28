@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:31:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/25 16:26:49 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/27 20:35:31 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void			ft_md5(t_flg *flg, t_alp *al, char *arg, int len)
 	md5_init(&fmd, arg, len);
 	if (fmd.len >= BLOCK_SIZE - 8)
 		arg = get_block_md5(&fmd, al, arg);
-	printf("\nstr = %s\n", arg);
 	x = ft_memalloc(sizeof(unsigned int) * 64);
 	ft_memset(x, 0, sizeof(x));
 	if (fmd.len >= 0)

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:49:09 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/25 16:25:02 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/27 20:34:55 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,18 @@ void			put_md5(t_flg *flg, t_fmd5 *fmd, char *arg)
 	if (flg->q == 0 && flg->r == 0)
 	{
 		if (flg->fd)
-			ft_printf("MD5(%s)= ", flg->fdname);
+			ft_printf("MD5 (%s) = ", flg->fdname);
 		else
-			ft_printf("MD5(\"%s\")= ", arg);
+			ft_printf("MD5 (\"%s\") = ", arg);
 		put_hash(md5_final(fmd));
 	}
 	else if (flg->r)
 	{
 		put_hash(md5_final(fmd));
-		ft_printf(" \"%s\"", arg);
+		if (flg->fd)
+			ft_printf(" %s", flg->fdname);
+		else
+			ft_printf(" \"%s\"", arg);
 	}
 	else if (flg->q)
 		put_hash(md5_final(fmd));
@@ -57,7 +60,10 @@ void		put_sha(t_flg *flg, t_fsha *fsh, char *arg)
 	else if (flg->r)
 	{
 		put_hash_sha(flg, fsh);
-		ft_printf(" \"%s\"", arg);
+		if (flg->fd)
+			ft_printf(" %s", flg->fdname);
+		else
+			ft_printf(" \"%s\"", arg);
 	}
 	else if (flg->q)
 		put_hash_sha(flg, fsh);
