@@ -6,9 +6,11 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:30:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/27 21:29:39 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/27 22:29:27 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_ssl.h"
 
 #include "ft_ssl.h"
 
@@ -35,8 +37,10 @@ void	flag_init(t_flg *flg, char **arg, int argv)
 			break;
 	}
 	flg->i = i;
-	if (!flg->p && !flg->s && argv > 2)
+	if (!flg->p && !flg->s && arg[i])
 		flg->fd = 1;
+	if (flg->r && flg->q)
+		flg->r = 0;
 	//printf("p = %d, q = %d, r = %d, s = %d, i = %d\n", flg->p, flg->q, flg->r, flg->s, flg->i);
 	// else
 	// {
@@ -92,13 +96,4 @@ void	parse_flag(t_flg *flg, char *arg)
 		flg->s = 1;
 	else
 		flg->fd = 1;
-	// if (!flg->q && !flg->r && !flg->p)
-	// 	flg->i = 2;
-	// else if ((flg->q || flg->r) && !ft_strcmp(arg, "-s"))
-	// {
-	// 	flg->s = 1;
-	// 	flg->i = 4;
-	// }
-	// else
-	// 	flg->i = 3;
 }
