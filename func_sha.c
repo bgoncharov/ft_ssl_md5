@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 17:46:47 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/27 20:05:33 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/27 21:29:56 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ unsigned		rotr(unsigned x, unsigned n)
 	return ((x >> n) | (x << (32 - n)));
 }
 
-unsigned long	rotr_64(unsigned long x, unsigned long n)
+unsigned long	r_64(unsigned long x, unsigned long n)
 {
 	return ((x >> n) | (x << (64 - n)));
 }

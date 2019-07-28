@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:30:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/27 20:35:15 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/27 21:29:39 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ void	flag_init(t_flg *flg, char **arg, int argv)
 	flg->q = 0;
 	flg->r = 0;
 	flg->s = 0;
-	flg->fd = 0;
 	flg->i = 0;
+	flg->fd = 0;
+	flg->in = 0;
 	while (i < argv)
 	{
 		if (arg[i][0] == '-')
@@ -34,7 +35,7 @@ void	flag_init(t_flg *flg, char **arg, int argv)
 			break;
 	}
 	flg->i = i;
-	if (!flg->p && !flg->s)
+	if (!flg->p && !flg->s && argv > 2)
 		flg->fd = 1;
 	//printf("p = %d, q = %d, r = %d, s = %d, i = %d\n", flg->p, flg->q, flg->r, flg->s, flg->i);
 	// else
