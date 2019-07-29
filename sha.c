@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 19:39:32 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 16:24:26 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 16:56:40 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_sha256(t_flg *flg, t_alp *al, char *arg, int len)
 	((char *)w)[fsh.round - 1] = (fsh.bitlen & 0x000000FF);
 	sha_stages(&fsh, al, w);
 	free(w);
-	put_sha(flg, &fsh, arg);
+	put_sha(flg, &fsh, arg, put_hash_sha256);
 }
 
 void	ft_sha512(t_flg *flg, t_alp *al, char *arg, int len)
@@ -91,5 +91,5 @@ void	ft_sha512(t_flg *flg, t_alp *al, char *arg, int len)
 	}
 	sha512_stages(&fsh, al, w);
 	free(w);
-	put_sha(flg, &fsh, arg);
+	put_sha(flg, &fsh, arg, put_hash_sha512);
 }

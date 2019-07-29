@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:49:09 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 16:24:43 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 16:56:57 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,31 @@ void	put_md5(t_flg *flg, t_fmd5 *fmd, char *arg)
 	ft_putchar('\n');
 }
 
-void	put_hash_sha(t_flg *flg, t_fsha *fsh)
+void	put_hash_sha512(t_fsha *fsh)
 {
 	int i;
 
 	i = 0;
-	if (!ft_strcmp(flg->alg, "sha256"))
+	while (i < fsh->hash_len)
 	{
-		while (i < fsh->hash_len)
-		{
-			ft_printf("%08x", fsh->hash[i]);
-			i++;
-		}
-	}
-	else
-	{
-		while (i < fsh->hash_len)
-		{
-			ft_printf("%016lx", fsh->hash[i]);
-			i++;
-		}
+		ft_printf("%016lx", fsh->hash[i]);
+		i++;
 	}
 }
 
-void	put_sha_s(t_flg *flg, t_fsha *fsh, char *arg)
+void	put_hash_sha256(t_fsha *fsh)
+{
+	int i;
+
+	i = 0;
+	while (i < fsh->hash_len)
+	{
+		ft_printf("%08x", fsh->hash[i]);
+		i++;
+	}
+}
+
+void	put_sha_s(t_flg *flg, t_fsha *fsh, char *arg, void (*f_put)(t_fsha *))
 {
 	char *alg;
 
@@ -85,29 +86,29 @@ void	put_sha_s(t_flg *flg, t_fsha *fsh, char *arg)
 		ft_printf("%s(\"%s\")= ", ft_strtoupper(alg), arg);
 	else
 		ft_printf("%s(%s)= ", ft_strtoupper(alg), flg->fdname);
-	put_hash_sha(flg, fsh);
+	(*f_put)(fsh);
 	free(alg);
 }
 
-void	put_sha(t_flg *flg, t_fsha *fsh, char *arg)
+void	put_sha(t_flg *flg, t_fsha *fsh, char *arg, void (*f_put)(t_fsha *))
 {
 	if (flg->in)
 	{
 		if (flg->p)
 			ft_printf("%s", arg);
-		put_hash_sha(flg, fsh);
+		(*f_put)(fsh);
 	}
 	else if (flg->q == 0 && flg->r == 0)
-		put_sha_s(flg, fsh, arg);
+		put_sha_s(flg, fsh, arg, f_put);
 	else if (flg->r)
 	{
-		put_hash_sha(flg, fsh);
+		(*f_put)(fsh);
 		if (flg->s)
 			ft_printf(" \"%s\"", arg);
 		else
 			ft_printf(" %s", flg->fdname);
 	}
 	else if (flg->q)
-		put_hash_sha(flg, fsh);
+		(*f_put)(fsh);
 	ft_putchar('\n');
 }
