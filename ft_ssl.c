@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:50:59 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/28 20:13:36 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/28 20:17:08 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ int	main(int argc, char **argv)
 	t_flg	flg;
 	t_alp	al;
 	int		fd;
+	//const t_dispatcher disp[NBR_CMD] = {ft_md5, ft_sha};
 
+	//disp[1](&flg, &al, argv[3], 0);
 	fd = 0;
 	if (argc < 2)
 	{
@@ -98,10 +100,12 @@ int	main(int argc, char **argv)
 			parse_stdin(&flg, &al);
 		if (flg.s && argv[flg.i])
 		{
-			if (!ft_strcmp(flg.alg, "md5"))
-				ft_md5(&flg, &al, argv[flg.i], 0);
-			else
-				ft_sha(&flg, &al, argv[flg.i], 0);
+			//if (!ft_strcmp(flg.alg, "md5"))
+				g_disp[flg.index](&flg, &al, argv[flg.i], 0);
+				//ft_md5(&flg, &al, argv[flg.i], 0);
+			// else
+			// 	g_disp[1](&flg, &al, argv[flg.i], 0);
+				//ft_sha(&flg, &al, argv[flg.i], 0);
 			flg.s = 0;
 			flg.i++;
 		}

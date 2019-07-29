@@ -6,11 +6,9 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:30:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/27 22:29:27 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/28 20:16:25 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_ssl.h"
 
 #include "ft_ssl.h"
 
@@ -37,7 +35,7 @@ void	flag_init(t_flg *flg, char **arg, int argv)
 			break;
 	}
 	flg->i = i;
-	if (!flg->p && !flg->s && arg[i])
+	if ((!flg->p && !flg->s && arg[i]) || (flg->p && !flg->s && arg[i]) || (i != argv - 1))
 		flg->fd = 1;
 	if (flg->r && flg->q)
 		flg->r = 0;
@@ -66,14 +64,30 @@ void	alphabet_init(t_alp *al)
 	al->h = 0;
 }
 
-void	parse_alg(t_flg *flg, char *arg)
+char	*ft_strtolower(char *str)
 {
-	if (!ft_strcmp(arg, "md5") || !ft_strcmp(arg, "MD5"))
-		flg->alg = "md5";
-	else if (!ft_strcmp(arg, "sha256") || !ft_strcmp(arg, "SHA256"))
-		flg->alg = "sha256";
-	else if (!ft_strcmp(arg, "sha512") || !ft_strcmp(arg, "SHA512"))
-		flg->alg = "sha512";
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	return (str);
+}
+
+int	parse_alg(t_flg *flg, char *arg)
+{
+	char *alg;
+
+	flg->index = 0;
+	alg = ft_strdup(arg);
+	ft_strtolower(alg);
+	while (flg->index < NBR_CMD && ft_strcmp(g_name[flg->index], alg))
+		flg->index++;
+	if (flg->index != NBR_CMD)
+		flg->alg = ft_strdup(alg);
 	else
 	{
 		ft_printf("ft_ssl: Error: \'%s\' is an invalid command.\n\n", arg);
@@ -82,6 +96,8 @@ void	parse_alg(t_flg *flg, char *arg)
 		ft_putstr("Cipher commands:\n");
 		exit(1);
 	}
+	free(alg);
+	return (flg->index);
 }
 
 void	parse_flag(t_flg *flg, char *arg)
