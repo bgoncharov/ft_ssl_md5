@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 19:39:32 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 15:53:21 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 16:24:26 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	sha256_init(t_fsha *fsh, char *arg, int len)
 	fsh->hash[6] = 0x1f83d9ab;
 	fsh->hash[7] = 0x5be0cd19;
 	fsh->round = 64;
+	fsh->hash_len = 8;
 	if (len)
 		fsh->len = len;
 	else
@@ -41,6 +42,7 @@ void	sha512_init(t_fsha *fsh, char *arg, int len)
 	fsh->hash[6] = 0x1f83d9abfb41bd6b;
 	fsh->hash[7] = 0x5be0cd19137e2179;
 	fsh->round = 80;
+	fsh->hash_len = 8;
 	if (len)
 		fsh->len = len;
 	else

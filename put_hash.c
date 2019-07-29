@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:49:09 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 15:57:52 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 16:24:43 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	put_hash_sha(t_flg *flg, t_fsha *fsh)
 	i = 0;
 	if (!ft_strcmp(flg->alg, "sha256"))
 	{
-		while (i < 8)
+		while (i < fsh->hash_len)
 		{
 			ft_printf("%08x", fsh->hash[i]);
 			i++;
@@ -68,7 +68,7 @@ void	put_hash_sha(t_flg *flg, t_fsha *fsh)
 	}
 	else
 	{
-		while (i < 8)
+		while (i < fsh->hash_len)
 		{
 			ft_printf("%016lx", fsh->hash[i]);
 			i++;
@@ -82,9 +82,9 @@ void	put_sha_s(t_flg *flg, t_fsha *fsh, char *arg)
 
 	alg = ft_strdup(flg->alg);
 	if (flg->s)
-		ft_printf("%s(\"%s\")= ", ft_strupper(alg), arg);
+		ft_printf("%s(\"%s\")= ", ft_strtoupper(alg), arg);
 	else
-		ft_printf("%s(%s)= ", ft_strupper(alg), flg->fdname);
+		ft_printf("%s(%s)= ", ft_strtoupper(alg), flg->fdname);
 	put_hash_sha(flg, fsh);
 	free(alg);
 }
