@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:54:46 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/28 20:13:37 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/28 20:15:18 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include "ft_printf/includes/ft_printf.h"
 # define BLOCK_SIZE 64
 # define SIZE_SHA 128
+# define NBR_CMD 3
+
+// typedef struct		s_dispatch
+// {
+// 	const char *command[NBR_CMD]; //= {"md5", "sha256", "sha512"};
+// }					t_dispatch;
 
 typedef struct		s_flg
 {
