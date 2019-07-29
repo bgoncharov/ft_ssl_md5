@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:54:46 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/27 21:30:55 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/28 20:13:37 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct		s_fsha
 	int				round;
 }					t_fsha;
 
-int					parse_file(t_flg *flg, t_alp *al, char *arg);
+int					parse_file(t_flg *flg, t_alp *al, char *arg, int fd);
 void				parse_stdin(t_flg *flg, t_alp *al);
 void				flag_init(t_flg *flg, char **arg, int argv);
 void				parse_flag(t_flg *flg, char *arg);
