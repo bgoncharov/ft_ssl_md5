@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:50:59 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/27 22:29:43 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/28 20:10:09 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,9 @@ void	parse_stdin(t_flg *flg, t_alp *al)
 	{
 		line[len] = '\0';
 		str = ft_strjoin(str, line);
-		ft_strdel(&line);
-		line = ft_strnew(BLOCK_SIZE);
 		len = read(0, line, BLOCK_SIZE);
 	}
-	if (line)
-		ft_strdel(&line);
+	ft_strdel(&line);
 	if (!ft_strcmp(flg->alg, "md5"))
 		ft_md5(flg, al, str, len);
 	else
