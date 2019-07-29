@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 19:39:32 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/28 20:18:02 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 15:53:21 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	sha512_init(t_fsha *fsh, char *arg, int len)
 		fsh->len = ft_strlen(arg);
 	fsh->bitlen = fsh->len * 8;
 }
-
 
 void	ft_sha256(t_flg *flg, t_alp *al, char *arg, int len)
 {
