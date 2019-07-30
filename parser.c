@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:30:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 18:43:02 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 19:53:07 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	flag_init(t_flg *flg, char **arg, int argv)
 			break ;
 	}
 	flg->i = i;
+	if (!arg[i] && (flg->r || flg->q))
+		flg->p = 2;
 	if ((!flg->p && !flg->s && arg[i]) || (flg->p && !flg->s && arg[i])
 		|| (i != argv - 1))
 		flg->fd = 1;

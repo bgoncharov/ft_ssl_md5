@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:50:59 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:45:04 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 19:54:15 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int		check_error(t_flg *flg, char *arg, int fd)
 		return (-1);
 	}
 	if (fd < 0)
-		ft_printf("%s: %s: No such file or directory\n", g_name[flg->index], arg);
+	{
+		ft_printf("%s: ", g_name[flg->index]);
+		ft_printf("%s: No such file or directory\n", arg);
+	}
 	return (fd);
 }
 
@@ -121,6 +124,5 @@ int		main(int argc, char **argv)
 			}
 		}
 	}
-	//system("leaks ft_ssl");
 	return (0);
 }

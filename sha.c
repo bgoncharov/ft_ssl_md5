@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 19:39:32 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:44:04 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 19:52:36 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	put_sha(t_flg *flg, t_fsha *fsh, char *arg, void (*f_put)(t_fsha *))
 {
 	if (flg->in)
 	{
-		if (flg->p)
+		if (flg->p == 1)
 			ft_printf("%s", arg);
 		(*f_put)(fsh);
 	}
@@ -33,7 +33,7 @@ void	put_sha(t_flg *flg, t_fsha *fsh, char *arg, void (*f_put)(t_fsha *))
 	else if (flg->q)
 		(*f_put)(fsh);
 	ft_strdel(&arg);
-	ft_putchar('\n');
+	ft_printf("\n");
 }
 
 void	ft_sha224(t_flg *flg, t_alp *al, char *arg)
