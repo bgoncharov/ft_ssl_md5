@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:07:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:49:47 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 19:51:21 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ const unsigned	g_k[64] = {
 	0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 };
 
-unsigned	*sha256_update(t_fsha *fsh, unsigned int *w)
+unsigned	*sha256_update(t_fsha *fsh, unsigned *w)
 {
 	int i;
 
