@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:31:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 17:25:12 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 17:27:34 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ void			ft_md5(t_flg *flg, t_alp *al, char *arg, int len)
 	md5_update(&fmd, x);
 	stage_one(&fmd, al, x);
 	free(x);
+	//ft_strdel(&arg);
 	put_md5(flg, &fmd, temp);
 }

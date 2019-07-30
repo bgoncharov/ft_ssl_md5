@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:54:46 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 17:25:34 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 17:27:49 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct		s_flg
 	int				in;
 	int				index;
 	char			*fdname;
-	char			*alg;
 }					t_flg;
 
 typedef struct		s_alp
