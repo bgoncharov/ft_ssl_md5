@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:30:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 16:09:21 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 17:24:53 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	parse_alg(t_flg *flg, t_alp *al, int argc, char **argv)
 	flg->index = 0;
 	alg = ft_strdup(argv[1]);
 	ft_strtolower(alg);
-	while (flg->index < NBR_CMD && ft_strcmp(g_name[flg->index], alg))
+	while (g_name[flg->index] != NULL && ft_strcmp(g_name[flg->index], alg))
 		flg->index++;
-	if (flg->index != NBR_CMD)
+	if (g_name[flg->index] != NULL)
 		flg->alg = ft_strdup(alg);
 	else
 	{

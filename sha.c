@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 19:39:32 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 16:59:15 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 17:04:32 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void	ft_sha224(t_flg *flg, t_alp *al, char *arg, int len)
 {
 	t_fsha		fsh;
 	unsigned	*w;
+	char		*temp;
 
+	temp = ft_strdup(arg);
 	sha224_init(&fsh, arg, len);
 	if (fsh.len >= BLOCK_SIZE - 8)
 		arg = get_block_sha256(&fsh, al, arg);
@@ -63,7 +65,9 @@ void	ft_sha256(t_flg *flg, t_alp *al, char *arg, int len)
 {
 	t_fsha		fsh;
 	unsigned	*w;
+	char		*temp;
 
+	temp = ft_strdup(arg);
 	sha256_init(&fsh, arg, len);
 	if (fsh.len >= BLOCK_SIZE - 8)
 		arg = get_block_sha256(&fsh, al, arg);
@@ -80,14 +84,16 @@ void	ft_sha256(t_flg *flg, t_alp *al, char *arg, int len)
 	((char *)w)[fsh.round - 1] = (fsh.bitlen & 0x000000FF);
 	sha_stages(&fsh, al, w);
 	free(w);
-	put_sha(flg, &fsh, arg, put_hash_sha256);
+	put_sha(flg, &fsh, temp, put_hash_sha256);
 }
 
 void	ft_sha384(t_flg *flg, t_alp *al, char *arg, int len)
 {
 	t_fsha			fsh;
 	unsigned long	*w;
+	char			*temp;
 
+	temp = ft_strdup(arg);
 	sha384_init(&fsh, arg, len);
 	if (fsh.len >= SIZE_SHA - 16)
 		arg = get_block_sha512(&fsh, al, arg);
@@ -107,7 +113,9 @@ void	ft_sha512(t_flg *flg, t_alp *al, char *arg, int len)
 {
 	t_fsha			fsh;
 	unsigned long	*w;
+	char			*temp;
 
+	temp = ft_strdup(arg);
 	sha512_init(&fsh, arg, len);
 	if (fsh.len >= SIZE_SHA - 16)
 		arg = get_block_sha512(&fsh, al, arg);
