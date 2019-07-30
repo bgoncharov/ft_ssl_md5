@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 15:02:40 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/27 21:41:12 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 18:44:44 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ unsigned long	*sha512_update(t_fsha *fsh, unsigned long *w)
 		i++;
 	}
 	if (fsh->len < SIZE_SHA - 16)
-		sha_padding(fsh, w);
+		sha512_padding(fsh, w);
 	else
 		w[i] = revers_bits_64(w[i]);
 	i++;
@@ -67,7 +67,7 @@ unsigned long	*sha512_update(t_fsha *fsh, unsigned long *w)
 	return (w);
 }
 
-unsigned long	*sha_padding(t_fsha *fsh, unsigned long *w)
+unsigned long	*sha512_padding(t_fsha *fsh, unsigned long *w)
 {
 	((char *)w)[SIZE_SHA - 1] = (fsh->bitlen & 0xFF00000000000000) >> 56;
 	((char *)w)[SIZE_SHA - 2] = (fsh->bitlen & 0x00FF000000000000) >> 48;

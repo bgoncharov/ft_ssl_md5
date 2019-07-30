@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:50:59 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 17:28:22 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 18:44:24 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int		parse_file(t_flg *flg, t_alp *al, char *arg)
 			ft_strdel(&str);
 			str = temp;
 		}
-		ft_strdel(&temp);
 		close(fd);
 		g_disp[flg->index](flg, al, str, len);
+		ft_strdel(&temp);
 	}
 	return (0);
 }
@@ -76,8 +76,8 @@ void	parse_stdin(t_flg *flg, t_alp *al)
 		str = temp;
 		len = read(0, line, BLOCK_SIZE);
 	}
-	ft_strdel(&temp);
 	g_disp[flg->index](flg, al, str, len);
+	ft_strdel(&temp);
 	flg->in = 0;
 }
 
@@ -123,6 +123,6 @@ int		main(int argc, char **argv)
 			}
 		}
 	}
-	system("leaks ft_ssl");
+	//system("leaks ft_ssl");
 	return (0);
 }

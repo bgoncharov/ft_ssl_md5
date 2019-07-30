@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 19:39:32 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 17:26:36 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 18:42:44 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_sha224(t_flg *flg, t_alp *al, char *arg, int len)
 	((char *)w)[fsh.round - 3] = (fsh.bitlen & 0x00FF0000) >> 16;
 	((char *)w)[fsh.round - 2] = (fsh.bitlen & 0x0000FF00) >> 8;
 	((char *)w)[fsh.round - 1] = (fsh.bitlen & 0x000000FF);
-	sha_stages(&fsh, al, w);
+	sha256_stages(&fsh, al, w);
 	free(w);
 	put_sha(flg, &fsh, temp, put_hash_sha256);
 }
@@ -83,7 +83,7 @@ void	ft_sha256(t_flg *flg, t_alp *al, char *arg, int len)
 	((char *)w)[fsh.round - 3] = (fsh.bitlen & 0x00FF0000) >> 16;
 	((char *)w)[fsh.round - 2] = (fsh.bitlen & 0x0000FF00) >> 8;
 	((char *)w)[fsh.round - 1] = (fsh.bitlen & 0x000000FF);
-	sha_stages(&fsh, al, w);
+	sha256_stages(&fsh, al, w);
 	free(w);
 	put_sha(flg, &fsh, temp, put_hash_sha256);
 }

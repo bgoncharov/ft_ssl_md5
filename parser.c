@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:30:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 17:27:09 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 18:43:02 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	parse_alg(t_flg *flg, t_alp *al, int argc, char **argv)
 		exit(1);
 	}
 	ft_strdel(&alg);
-	//free(alg);
 	flag_init(flg, argv, argc);
 	alphabet_init(al);
 }
