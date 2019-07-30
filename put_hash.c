@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:49:09 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 16:56:57 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 16:59:30 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,27 +88,4 @@ void	put_sha_s(t_flg *flg, t_fsha *fsh, char *arg, void (*f_put)(t_fsha *))
 		ft_printf("%s(%s)= ", ft_strtoupper(alg), flg->fdname);
 	(*f_put)(fsh);
 	free(alg);
-}
-
-void	put_sha(t_flg *flg, t_fsha *fsh, char *arg, void (*f_put)(t_fsha *))
-{
-	if (flg->in)
-	{
-		if (flg->p)
-			ft_printf("%s", arg);
-		(*f_put)(fsh);
-	}
-	else if (flg->q == 0 && flg->r == 0)
-		put_sha_s(flg, fsh, arg, f_put);
-	else if (flg->r)
-	{
-		(*f_put)(fsh);
-		if (flg->s)
-			ft_printf(" \"%s\"", arg);
-		else
-			ft_printf(" %s", flg->fdname);
-	}
-	else if (flg->q)
-		(*f_put)(fsh);
-	ft_putchar('\n');
 }

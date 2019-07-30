@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:50:59 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 16:10:38 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 17:00:20 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ int		main(int argc, char **argv)
 			}
 		}
 	}
-	//while (1);
+	//system("leaks ft_ssl");
 	return (0);
 }

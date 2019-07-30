@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:54:46 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 16:57:24 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/29 16:59:53 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct		s_flg
 	int				index;
 	char			*fdname;
 	char			*alg;
-
 }					t_flg;
 
 typedef struct		s_alp
@@ -68,6 +67,8 @@ typedef struct		s_fsha
 	__uint128_t		bitlen;
 	int				round;
 }					t_fsha;
+
+typedef void		(*t_dispatcher)(t_flg *, t_alp *, char *, int);
 
 int					parse_file(t_flg *flg, t_alp *al, char *arg);
 void				parse_stdin(t_flg *flg, t_alp *al);
@@ -120,8 +121,6 @@ void				put_sha_s(t_flg *flg, t_fsha *fsh, char *arg, \
 					void (*f_put)(t_fsha *));
 void				put_hash_sha256(t_fsha *fsh);
 void				put_hash_sha512(t_fsha *fsh);
-
-typedef void		(*t_dispatcher)(t_flg *, t_alp *, char *, int);
 
 static char			*g_name[NBR_CMD] =
 {"md5", "sha224", "sha256", "sha384", "sha512"};
