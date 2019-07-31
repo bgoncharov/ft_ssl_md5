@@ -6,13 +6,13 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:30:31 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:55:31 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/30 19:53:08 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-void	parse_flag(t_flg *flg, char *arg)
+void	flag_parse(t_flg *flg, char *arg)
 {
 	if (!ft_strcmp(arg, "-p"))
 		flg->p = 1;
@@ -48,7 +48,7 @@ void	flag_init(t_flg *flg, char **arg, int argv)
 	while (++i < argv)
 	{
 		if (arg[i][0] == '-')
-			parse_flag(flg, arg[i]);
+			flag_parse(flg, arg[i]);
 		else
 			break ;
 	}
@@ -62,7 +62,7 @@ void	flag_init(t_flg *flg, char **arg, int argv)
 		flg->r = 0;
 }
 
-void	alphabet_init(t_alp *al)
+void	alpha_init(t_alp *al)
 {
 	al->a = 0;
 	al->b = 0;
@@ -74,7 +74,7 @@ void	alphabet_init(t_alp *al)
 	al->h = 0;
 }
 
-void	parse_alg(t_flg *flg, t_alp *al, int argc, char **argv)
+void	alg_parse(t_flg *flg, t_alp *al, int argc, char **argv)
 {
 	char *alg;
 
@@ -98,5 +98,5 @@ void	parse_alg(t_flg *flg, t_alp *al, int argc, char **argv)
 	}
 	ft_strdel(&alg);
 	flag_init(flg, argv, argc);
-	alphabet_init(al);
+	alpha_init(al);
 }

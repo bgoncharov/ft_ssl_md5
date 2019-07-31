@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 15:02:40 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 18:44:44 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/30 18:17:25 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,20 @@ const unsigned long	g_kk[80] = {
 	0x5fcb6fab3ad6faec, 0x6c44198c4a475817
 };
 
-unsigned long	*sha512_update(t_fsha *fsh, unsigned long *w)
+unsigned long	*sha512_upd(t_fsha *fsh, unsigned long *w)
 {
 	int i;
 
 	i = 0;
 	while (i < 15)
 	{
-		w[i] = revers_bits_64(w[i]);
+		w[i] = rev_bits_64(w[i]);
 		i++;
 	}
 	if (fsh->len < SIZE_SHA - 16)
-		sha512_padding(fsh, w);
+		sha512_filling(fsh, w);
 	else
-		w[i] = revers_bits_64(w[i]);
+		w[i] = rev_bits_64(w[i]);
 	i++;
 	while (i < fsh->round)
 	{
@@ -67,7 +67,7 @@ unsigned long	*sha512_update(t_fsha *fsh, unsigned long *w)
 	return (w);
 }
 
-unsigned long	*sha512_padding(t_fsha *fsh, unsigned long *w)
+unsigned long	*sha512_filling(t_fsha *fsh, unsigned long *w)
 {
 	((char *)w)[SIZE_SHA - 1] = (fsh->bitlen & 0xFF00000000000000) >> 56;
 	((char *)w)[SIZE_SHA - 2] = (fsh->bitlen & 0x00FF000000000000) >> 48;
@@ -88,7 +88,7 @@ unsigned long	*sha512_padding(t_fsha *fsh, unsigned long *w)
 	return (w);
 }
 
-void			sha512_rounds(t_fsha *fsh, t_alp *al, unsigned long *w)
+void			sha512_laps(t_fsha *fsh, t_alp *al, unsigned long *w)
 {
 	int			i;
 
@@ -113,9 +113,9 @@ void			sha512_rounds(t_fsha *fsh, t_alp *al, unsigned long *w)
 	}
 }
 
-void			sha512_stages(t_fsha *fsh, t_alp *al, unsigned long *w)
+void			sha512_stg(t_fsha *fsh, t_alp *al, unsigned long *w)
 {
-	sha512_update(fsh, w);
+	sha512_upd(fsh, w);
 	al->a = fsh->hash[0];
 	al->b = fsh->hash[1];
 	al->c = fsh->hash[2];
@@ -124,7 +124,7 @@ void			sha512_stages(t_fsha *fsh, t_alp *al, unsigned long *w)
 	al->f = fsh->hash[5];
 	al->g = fsh->hash[6];
 	al->h = fsh->hash[7];
-	sha512_rounds(fsh, al, w);
+	sha512_laps(fsh, al, w);
 	fsh->hash[0] += al->a;
 	fsh->hash[1] += al->b;
 	fsh->hash[2] += al->c;
@@ -147,14 +147,14 @@ char			*get_block_sha512(t_fsha *fsh, t_alp *al, char *arg)
 			ft_memset(w, 0, sizeof(w));
 			ft_memcpy(w, arg, fsh->len);
 			((char *)w)[fsh->len] = 0x80;
-			sha512_stages(fsh, al, w);
+			sha512_stg(fsh, al, w);
 			arg = arg + fsh->len;
 			fsh->len = -1;
 		}
 		else
 		{
 			ft_memcpy(w, arg, SIZE_SHA);
-			sha512_stages(fsh, al, w);
+			sha512_stg(fsh, al, w);
 			arg = arg + SIZE_SHA;
 			fsh->len = fsh->len - SIZE_SHA;
 		}

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 17:46:47 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:53:46 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/30 18:16:51 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ unsigned long	r_64(unsigned long x, unsigned long n)
 	return ((x >> n) | (x << (64 - n)));
 }
 
-unsigned		revers_bits(unsigned w)
+unsigned		rev_bits(unsigned w)
 {
 	return ((w >> 24) | ((w & 0xFF0000) >> 8) |
 	((w & 0xFF00) << 8) | (w << 24));
 }
 
-unsigned long	revers_bits_64(unsigned long w)
+unsigned long	rev_bits_64(unsigned long w)
 {
 	return (((w & 0xFF00000000000000) >> 56)) |
 	((w & 0x00FF000000000000) >> 40) |

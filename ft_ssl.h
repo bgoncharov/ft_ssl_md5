@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:54:46 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:51:09 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/30 19:57:54 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,21 @@ void				ft_sha224(t_flg *flg, t_alp *al, char *arg);
 void				ft_sha256(t_flg *flg, t_alp *al, char *arg);
 void				ft_sha384(t_flg *flg, t_alp *al, char *arg);
 void				ft_sha512(t_flg *flg, t_alp *al, char *arg);
-void				parse_str(t_flg *flg, t_alp *al, char **argv);
-int					parse_file(t_flg *flg, t_alp *al, char *arg);
-void				parse_stdin(t_flg *flg, t_alp *al);
-void				parse_alg(t_flg *flg, t_alp *al, int argc, char **argv);
-void				parse_flag(t_flg *flg, char *arg);
+void				str_parse(t_flg *flg, t_alp *al, char **argv);
+int					file_parse(t_flg *flg, t_alp *al, char *arg);
+void				stdin_parse(t_flg *flg, t_alp *al);
+void				alg_parse(t_flg *flg, t_alp *al, int argc, char **argv);
+void				flag_parse(t_flg *flg, char *arg);
 void				flag_init(t_flg *flg, char **arg, int argv);
-int					check_error(t_flg *flg, char *arg, int fd);
-void				alphabet_init(t_alp *al);
+int					check_err(t_flg *flg, char *arg, int fd);
+void				alpha_init(t_alp *al);
 void				md5_init(t_fmd5 *fmd, char *str);
-unsigned			*md5_update(t_fmd5 *fmd, unsigned *x);
+unsigned			*md5_upd(t_fmd5 *fmd, unsigned *x);
 char				*get_block_md5(t_fmd5 *fmd, t_alp *al, char *arg);
-void				stage_one(t_fmd5 *fmd, t_alp *a, unsigned *x);
-void				stage_two(t_fmd5 *fmd, t_alp *a, unsigned *x);
-void				stage_three(t_fmd5 *fmd, t_alp *a, unsigned *x);
-void				stage_four(t_fmd5 *fmd, t_alp *a, unsigned *x);
+void				first_stage(t_fmd5 *fmd, t_alp *a, unsigned *x);
+void				second_stage(t_fmd5 *fmd, t_alp *a, unsigned *x);
+void				third_stage(t_fmd5 *fmd, t_alp *a, unsigned *x);
+void				fourth_stage(t_fmd5 *fmd, t_alp *a, unsigned *x);
 unsigned			*md5_final(t_fmd5 *fmd);
 unsigned			fun_f(unsigned x, unsigned y, unsigned z);
 unsigned			fun_g(unsigned x, unsigned y, unsigned z);
@@ -94,21 +94,21 @@ unsigned			fun_i(unsigned x, unsigned y, unsigned z);
 unsigned			rl(unsigned x, unsigned n);
 unsigned			rotr(unsigned x, unsigned n);
 unsigned long		r_64(unsigned long x, unsigned long n);
-unsigned			revers_bits(unsigned w);
-unsigned long		revers_bits_64(unsigned long w);
-void				sha224_init(t_fsha *fsh, char *arg);
-void				sha256_init(t_fsha *fsh, char *arg);
-void				sha384_init(t_fsha *fsh, char *arg);
-void				sha512_init(t_fsha *fsh, char *arg);
-unsigned			*sha256_update(t_fsha *fsh, unsigned *w);
-unsigned long		*sha512_update(t_fsha *fsh, unsigned long *w);
-void				sha256_stages(t_fsha *fsh, t_alp *al, unsigned *w);
-void				sha512_stages(t_fsha *fsh, t_alp *al, unsigned long *w);
-void				sha256_rounds(t_fsha *fsh, t_alp *al, unsigned *w);
-void				sha512_rounds(t_fsha *fsh, t_alp *al, unsigned long *w);
+unsigned			rev_bits(unsigned w);
+unsigned long		rev_bits_64(unsigned long w);
+void				init_sha224(t_fsha *fsh, char *arg);
+void				init_sha256(t_fsha *fsh, char *arg);
+void				init_sha384(t_fsha *fsh, char *arg);
+void				init_sha512(t_fsha *fsh, char *arg);
+unsigned			*sha256_upd(t_fsha *fsh, unsigned *w);
+unsigned long		*sha512_upd(t_fsha *fsh, unsigned long *w);
+void				sha256_stg(t_fsha *fsh, t_alp *al, unsigned *w);
+void				sha512_stg(t_fsha *fsh, t_alp *al, unsigned long *w);
+void				sha256_laps(t_fsha *fsh, t_alp *al, unsigned *w);
+void				sha512_laps(t_fsha *fsh, t_alp *al, unsigned long *w);
 char				*get_block_sha256(t_fsha *fsh, t_alp *al, char *arg);
 char				*get_block_sha512(t_fsha *fsh, t_alp *al, char *arg);
-unsigned long		*sha512_padding(t_fsha *fsh, unsigned long *w);
+unsigned long		*sha512_filling(t_fsha *fsh, unsigned long *w);
 void				put_md5(t_flg *flg, t_fmd5 *fmd, char *arg);
 void				put_hash(unsigned *hash);
 void				put_sha(t_flg *flg, t_fsha *fsh, char *arg, \

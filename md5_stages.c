@@ -6,13 +6,13 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 17:57:07 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/25 15:50:07 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/30 18:23:34 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-void		stage_one(t_fmd5 *fmd, t_alp *a, unsigned *x)
+void		first_stage(t_fmd5 *fmd, t_alp *a, unsigned *x)
 {
 	a->a = fmd->hash[0];
 	a->b = fmd->hash[1];
@@ -38,10 +38,10 @@ void		stage_one(t_fmd5 *fmd, t_alp *a, unsigned *x)
 	fmd->hash[5] = a->b;
 	fmd->hash[6] = a->c;
 	fmd->hash[7] = a->d;
-	stage_two(fmd, a, x);
+	second_stage(fmd, a, x);
 }
 
-void		stage_two(t_fmd5 *fmd, t_alp *a, unsigned *x)
+void		second_stage(t_fmd5 *fmd, t_alp *a, unsigned *x)
 {
 	a->a = fmd->hash[4];
 	a->b = fmd->hash[5];
@@ -67,10 +67,10 @@ void		stage_two(t_fmd5 *fmd, t_alp *a, unsigned *x)
 	fmd->hash[5] = a->b;
 	fmd->hash[6] = a->c;
 	fmd->hash[7] = a->d;
-	stage_three(fmd, a, x);
+	third_stage(fmd, a, x);
 }
 
-void		stage_three(t_fmd5 *fmd, t_alp *a, unsigned *x)
+void		third_stage(t_fmd5 *fmd, t_alp *a, unsigned *x)
 {
 	a->a = fmd->hash[4];
 	a->b = fmd->hash[5];
@@ -96,10 +96,10 @@ void		stage_three(t_fmd5 *fmd, t_alp *a, unsigned *x)
 	fmd->hash[5] = a->b;
 	fmd->hash[6] = a->c;
 	fmd->hash[7] = a->d;
-	stage_four(fmd, a, x);
+	fourth_stage(fmd, a, x);
 }
 
-void		stage_four(t_fmd5 *fmd, t_alp *a, unsigned *x)
+void		fourth_stage(t_fmd5 *fmd, t_alp *a, unsigned *x)
 {
 	a->a = fmd->hash[4];
 	a->b = fmd->hash[5];

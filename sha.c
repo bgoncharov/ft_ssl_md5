@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 19:39:32 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:52:36 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/30 19:58:29 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_sha224(t_flg *flg, t_alp *al, char *arg)
 	char		*temp;
 
 	temp = ft_strdup(arg);
-	sha224_init(&fsh, arg);
+	init_sha224(&fsh, arg);
 	if (fsh.len >= BLOCK_SIZE - 8)
 		arg = get_block_sha256(&fsh, al, arg);
 	w = ft_memalloc(sizeof(unsigned int) * 64);
@@ -57,7 +57,7 @@ void	ft_sha224(t_flg *flg, t_alp *al, char *arg)
 	((char *)w)[fsh.round - 3] = (fsh.bitlen & 0x00FF0000) >> 16;
 	((char *)w)[fsh.round - 2] = (fsh.bitlen & 0x0000FF00) >> 8;
 	((char *)w)[fsh.round - 1] = (fsh.bitlen & 0x000000FF);
-	sha256_stages(&fsh, al, w);
+	sha256_stg(&fsh, al, w);
 	free(w);
 	put_sha(flg, &fsh, temp, put_hash_sha256);
 }
@@ -69,7 +69,7 @@ void	ft_sha256(t_flg *flg, t_alp *al, char *arg)
 	char		*temp;
 
 	temp = ft_strdup(arg);
-	sha256_init(&fsh, arg);
+	init_sha256(&fsh, arg);
 	if (fsh.len >= BLOCK_SIZE - 8)
 		arg = get_block_sha256(&fsh, al, arg);
 	w = ft_memalloc(sizeof(unsigned int) * 64);
@@ -83,7 +83,7 @@ void	ft_sha256(t_flg *flg, t_alp *al, char *arg)
 	((char *)w)[fsh.round - 3] = (fsh.bitlen & 0x00FF0000) >> 16;
 	((char *)w)[fsh.round - 2] = (fsh.bitlen & 0x0000FF00) >> 8;
 	((char *)w)[fsh.round - 1] = (fsh.bitlen & 0x000000FF);
-	sha256_stages(&fsh, al, w);
+	sha256_stg(&fsh, al, w);
 	free(w);
 	put_sha(flg, &fsh, temp, put_hash_sha256);
 }
@@ -95,7 +95,7 @@ void	ft_sha384(t_flg *flg, t_alp *al, char *arg)
 	char			*temp;
 
 	temp = ft_strdup(arg);
-	sha384_init(&fsh, arg);
+	init_sha384(&fsh, arg);
 	if (fsh.len >= SIZE_SHA - 16)
 		arg = get_block_sha512(&fsh, al, arg);
 	w = ft_memalloc(sizeof(unsigned long) * 80);
@@ -105,7 +105,7 @@ void	ft_sha384(t_flg *flg, t_alp *al, char *arg)
 		ft_memcpy(w, arg, fsh.len);
 		((char *)w)[fsh.len] = 0x80;
 	}
-	sha512_stages(&fsh, al, w);
+	sha512_stg(&fsh, al, w);
 	free(w);
 	put_sha(flg, &fsh, temp, put_hash_sha512);
 }
@@ -117,7 +117,7 @@ void	ft_sha512(t_flg *flg, t_alp *al, char *arg)
 	char			*temp;
 
 	temp = ft_strdup(arg);
-	sha512_init(&fsh, arg);
+	init_sha512(&fsh, arg);
 	if (fsh.len >= SIZE_SHA - 16)
 		arg = get_block_sha512(&fsh, al, arg);
 	w = ft_memalloc(sizeof(unsigned long) * 80);
@@ -127,7 +127,7 @@ void	ft_sha512(t_flg *flg, t_alp *al, char *arg)
 		ft_memcpy(w, arg, fsh.len);
 		((char *)w)[fsh.len] = 0x80;
 	}
-	sha512_stages(&fsh, al, w);
+	sha512_stg(&fsh, al, w);
 	free(w);
 	put_sha(flg, &fsh, temp, put_hash_sha512);
 }

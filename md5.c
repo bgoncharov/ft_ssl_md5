@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:31:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:53:25 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/30 19:46:15 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ char			*get_block_md5(t_fmd5 *fmd, t_alp *al, char *arg)
 			ft_memset(x, 0, sizeof(x));
 			ft_memcpy(x, arg, fmd->len);
 			((char *)x)[fmd->len] = 0x80;
-			stage_one(fmd, al, x);
+			first_stage(fmd, al, x);
 			arg = arg + fmd->len;
 			fmd->len = -1;
 			free(x);
 		}
 		else
 		{
-			stage_one(fmd, al, (unsigned *)arg);
+			first_stage(fmd, al, (unsigned *)arg);
 			arg = arg + BLOCK_SIZE;
 			fmd->len -= BLOCK_SIZE;
 		}
@@ -53,7 +53,7 @@ char			*get_block_md5(t_fmd5 *fmd, t_alp *al, char *arg)
 	return (arg);
 }
 
-unsigned		*md5_update(t_fmd5 *fmd, unsigned *x)
+unsigned		*md5_upd(t_fmd5 *fmd, unsigned *x)
 {
 	((char *)x)[BLOCK_SIZE - 5] = (fmd->bitlen & 0xFF000000) >> 24;
 	((char *)x)[BLOCK_SIZE - 6] = (fmd->bitlen & 0x00FF0000) >> 16;
@@ -100,8 +100,8 @@ void			ft_md5(t_flg *flg, t_alp *al, char *arg)
 		ft_memcpy(x, arg, fmd.len);
 		((char *)x)[fmd.len] = 0x80;
 	}
-	md5_update(&fmd, x);
-	stage_one(&fmd, al, x);
+	md5_upd(&fmd, x);
+	first_stage(&fmd, al, x);
 	free(x);
 	put_md5(flg, &fmd, temp);
 	ft_printf("\n");

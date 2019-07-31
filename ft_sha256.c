@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 20:07:12 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:51:21 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/30 18:16:25 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ const unsigned	g_k[64] = {
 	0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 };
 
-unsigned	*sha256_update(t_fsha *fsh, unsigned *w)
+unsigned	*sha256_upd(t_fsha *fsh, unsigned *w)
 {
 	int i;
 
 	i = 0;
 	while (i < 16)
 	{
-		w[i] = revers_bits(w[i]);
+		w[i] = rev_bits(w[i]);
 		i++;
 	}
 	while (i < fsh->round)
@@ -51,7 +51,7 @@ unsigned	*sha256_update(t_fsha *fsh, unsigned *w)
 	return (w);
 }
 
-void		sha256_rounds(t_fsha *fsh, t_alp *al, unsigned *w)
+void		sha256_laps(t_fsha *fsh, t_alp *al, unsigned *w)
 {
 	int			i;
 
@@ -76,9 +76,9 @@ void		sha256_rounds(t_fsha *fsh, t_alp *al, unsigned *w)
 	}
 }
 
-void		sha256_stages(t_fsha *fsh, t_alp *al, unsigned *w)
+void		sha256_stg(t_fsha *fsh, t_alp *al, unsigned *w)
 {
-	sha256_update(fsh, w);
+	sha256_upd(fsh, w);
 	al->a = fsh->hash[0];
 	al->b = fsh->hash[1];
 	al->c = fsh->hash[2];
@@ -87,7 +87,7 @@ void		sha256_stages(t_fsha *fsh, t_alp *al, unsigned *w)
 	al->f = fsh->hash[5];
 	al->g = fsh->hash[6];
 	al->h = fsh->hash[7];
-	sha256_rounds(fsh, al, w);
+	sha256_laps(fsh, al, w);
 	fsh->hash[0] += al->a;
 	fsh->hash[1] += al->b;
 	fsh->hash[2] += al->c;
@@ -110,14 +110,14 @@ char		*get_block_sha256(t_fsha *fsh, t_alp *al, char *arg)
 			ft_memset(w, 0, sizeof(w));
 			ft_memcpy(w, arg, fsh->len);
 			((char *)w)[fsh->len] = 0x80;
-			sha256_stages(fsh, al, w);
+			sha256_stg(fsh, al, w);
 			arg = arg + fsh->len;
 			fsh->len = -1;
 		}
 		else
 		{
 			ft_memcpy(w, arg, BLOCK_SIZE);
-			sha256_stages(fsh, al, w);
+			sha256_stg(fsh, al, w);
 			arg = arg + BLOCK_SIZE;
 			fsh->len = fsh->len - BLOCK_SIZE;
 		}

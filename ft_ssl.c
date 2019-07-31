@@ -6,13 +6,13 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 16:50:59 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:54:15 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/30 19:53:53 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-int		check_error(t_flg *flg, char *arg, int fd)
+int		check_err(t_flg *flg, char *arg, int fd)
 {
 	struct stat	statbuf;
 
@@ -30,7 +30,7 @@ int		check_error(t_flg *flg, char *arg, int fd)
 	return (fd);
 }
 
-int		parse_file(t_flg *flg, t_alp *al, char *arg)
+int		file_parse(t_flg *flg, t_alp *al, char *arg)
 {
 	char		line[BLOCK_SIZE + 1];
 	char		*str;
@@ -39,7 +39,7 @@ int		parse_file(t_flg *flg, t_alp *al, char *arg)
 	int			fd;
 
 	fd = open(arg, O_RDONLY);
-	if (check_error(flg, arg, fd) < 0)
+	if (check_err(flg, arg, fd) < 0)
 		return (1);
 	else
 	{
@@ -59,7 +59,7 @@ int		parse_file(t_flg *flg, t_alp *al, char *arg)
 	return (0);
 }
 
-void	parse_stdin(t_flg *flg, t_alp *al)
+void	stdin_parse(t_flg *flg, t_alp *al)
 {
 	char	line[BLOCK_SIZE + 1];
 	char	*str;
@@ -82,7 +82,7 @@ void	parse_stdin(t_flg *flg, t_alp *al)
 	flg->in = 0;
 }
 
-void	parse_str(t_flg *flg, t_alp *al, char **argv)
+void	str_parse(t_flg *flg, t_alp *al, char **argv)
 {
 	if (argv[flg->i])
 	{
@@ -110,16 +110,16 @@ int		main(int argc, char **argv)
 	}
 	else
 	{
-		parse_alg(&flg, &al, argc, argv);
+		alg_parse(&flg, &al, argc, argv);
 		if (flg.p || argc == 2)
-			parse_stdin(&flg, &al);
+			stdin_parse(&flg, &al);
 		if (flg.s)
-			parse_str(&flg, &al, argv);
+			str_parse(&flg, &al, argv);
 		if (flg.fd)
 		{
 			while (flg.i < argc)
 			{
-				parse_file(&flg, &al, argv[flg.i]);
+				file_parse(&flg, &al, argv[flg.i]);
 				flg.i++;
 			}
 		}

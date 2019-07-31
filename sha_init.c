@@ -6,13 +6,13 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 16:58:47 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/29 19:43:46 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/30 19:57:35 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-void	sha224_init(t_fsha *fsh, char *arg)
+void	init_sha224(t_fsha *fsh, char *arg)
 {
 	fsh->hash[0] = 0xc1059ed8;
 	fsh->hash[1] = 0x367cd507;
@@ -28,7 +28,7 @@ void	sha224_init(t_fsha *fsh, char *arg)
 	fsh->bitlen = fsh->len * 8;
 }
 
-void	sha256_init(t_fsha *fsh, char *arg)
+void	init_sha256(t_fsha *fsh, char *arg)
 {
 	fsh->hash[0] = 0x6a09e667;
 	fsh->hash[1] = 0xbb67ae85;
@@ -44,7 +44,7 @@ void	sha256_init(t_fsha *fsh, char *arg)
 	fsh->bitlen = fsh->len * 8;
 }
 
-void	sha384_init(t_fsha *fsh, char *arg)
+void	init_sha384(t_fsha *fsh, char *arg)
 {
 	fsh->hash[0] = 0xcbbb9d5dc1059ed8;
 	fsh->hash[1] = 0x629a292a367cd507;
@@ -60,7 +60,7 @@ void	sha384_init(t_fsha *fsh, char *arg)
 	fsh->bitlen = fsh->len * 8;
 }
 
-void	sha512_init(t_fsha *fsh, char *arg)
+void	init_sha512(t_fsha *fsh, char *arg)
 {
 	fsh->hash[0] = 0x6a09e667f3bcc908;
 	fsh->hash[1] = 0xbb67ae8584caa73b;
