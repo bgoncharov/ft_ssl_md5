@@ -8,11 +8,11 @@ For this project, you will implement the md5 and sha256 hashing functions.hashin
 
 1. Build
 
-`make`
+	`make`
 
 2. Launch
 
-`./ft_ssl command [command opts] [command args]`
+	`./ft_ssl command [command opts] [command args]`
 
 ## Usage
 
