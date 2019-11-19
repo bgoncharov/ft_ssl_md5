@@ -1,8 +1,6 @@
 # ft_ssl_md5
-OpenSSL is a cryptographic toolkit library written C that is used to secure communications over computer networks. It implements the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) network protocols to protect against eavesdropping and verify identities during network communication.
-You must create a program named ft_ssl that will recreate part of the OpenSSL
-functionality. Take care to do it well; the other projects in this series will build directly onto this program.
-For this project, you will implement the md5 and sha256 hashing functions.hashing algorithms.
+This prorgamm was a first project of security branch at [42 Silicon Valley](https://www.42.us.org/). The goal was to recreate part of the [OpenSSL](https://en.wikipedia.org/wiki/OpenSSL) functionality. OpenSSL is a cryptographic toolkit library written C that is used to secure communications over computer networks. It implements the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) network protocols to protect against eavesdropping and verify identities during network communication.
+Iimplemented function for this project: [MD5](https://en.wikipedia.org/wiki/MD5), [SHA254](https://en.wikipedia.org/wiki/SHA-2), [SHA256](https://en.wikipedia.org/wiki/SHA-2), [SHA384](https://en.wikipedia.org/wiki/Secure_Hash_Algorithms), [SHA512](https://en.wikipedia.org/wiki/SHA-2).
 
 ## How to use
 
@@ -16,9 +14,9 @@ For this project, you will implement the md5 and sha256 hashing functions.hashin
 
 ## Usage
 
-* command: md5 sha224 sha256 sha384 sha512
+* command: `md5` `sha224` `sha256` `sha384` `sha512`
 
-* command opts: [-pqr] [-s string] [files ...]
+* command opts: `[-pqr] [-s string] [files ...]`
 
     * `-p`, echo STDIN to STDOUT and append the checksum to STDOUT
     * `-q`, quiet mode
